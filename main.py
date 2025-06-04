@@ -213,8 +213,7 @@ class Choose:
                 "IsTopmost": True,
             }
             with open("D:/choice.json","w",encoding="utf-8") as file:
-                json.dump(data2, file, ensure_ascii=False, indent=4)
-                
+                json.dump(data2, file, ensure_ascii=False, indent=4)              
             webbrowser.open("classisland://plugins/easynotification/?type=simple&dir=D:\\choice.json")
         for i in namet:
             namel.append("%s（%s）" % (i["name"], i["no"]))
@@ -524,16 +523,16 @@ class FloatingWindow(QWidget):
             Qt.Tool |
             Qt.X11BypassWindowManagerHint 
         )
-        self.setFixedSize(100, 100)
+        self.setFixedSize(60, 60)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.tray = TrayIcon(self)
         self.tray.show()
         self.icon = QPixmap(resource_path("assets/NamePickerCircle.png"))
-        self.icon = self.icon.scaled(100, 100, Qt.KeepAspectRatio)
+        self.icon = self.icon.scaled(60, 60, Qt.KeepAspectRatio)
         if self.icon.isNull():
             logger.error("无法加载图标")
         screen_geometry = QGuiApplication.primaryScreen().availableGeometry()
-        self.move(int(screen_geometry.width()*0.7), int(screen_geometry.height()*0.7))
+        self.move(int(screen_geometry.width()*0.01), int(screen_geometry.height()*0.8))
         self.main_window = None
         self.drag_start_pos = QPoint()
         self.drag_threshold = 0  # 拖动判定阈值（像素）

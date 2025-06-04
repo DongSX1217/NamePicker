@@ -407,13 +407,6 @@ FluentPage {
         }
         SettingCard {
             width: parent.width
-            title: qsTr("抽选快捷键")
-            description: qsTr("拿来占位的")
-            icon: "ic_fluent_bin_recycle_20_regular"
-            enabled: Bridge.getVerified()
-        }
-        SettingCard {
-            width: parent.width
             title: qsTr("课表软件联动")
             description: qsTr("启用后将在ClassIsland/Class Widgets上（而非主界面）显示抽选结果，需要安装对应插件")
             icon: "ic_fluent_arrow_repeat_all_20_regular"

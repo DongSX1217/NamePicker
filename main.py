@@ -1,4 +1,4 @@
-import json
+import json,webbrowser
 import importlib
 import pyotp
 import base64
@@ -196,17 +196,29 @@ class Choose:
                 return ["bydcnm","没有符合条件的学生"]
 
         if cfg.get("General","supportCS"):
-            with open("%s\\unread" % temp_dir, "w", encoding="utf-8") as f:
-                f.write("111")
-            with open("%s\\res.txt" % temp_dir, "w", encoding="utf-8") as f:
-                for i in namet:
-                    namel.append("%s（%s）" % (i["name"], i["no"]))
-                f.writelines(namel)
-            logger.info("文件存储完成")
-        else:
+            text="抽选到的人有："
+            time=0.5
             for i in namet:
-                    namel.append("%s（%s）" % (i["name"], i["no"]))
-            return namel
+                # namel.append("%s（%s）" % (i["name"], i["no"]))
+                text+=i["name"]+"("+i["no"]+")  "
+                time+=2
+            data2={
+                "MaskDuration": 0.6,
+                "MaskContent": "抽选结果",
+                "OverlayDuration": time,
+                "OverlayContent": text,
+                "IsSpeechEnabled": False,
+                "IsEffectEnabled": True,
+                "IsSoundEnabled": True,
+                "IsTopmost": True,
+            }
+            with open("D:/choice.json","w",encoding="utf-8") as file:
+                json.dump(data2, file, ensure_ascii=False, indent=4)
+                
+            webbrowser.open("classisland://plugins/easynotification/?type=simple&dir=D:\\choice.json")
+        for i in namet:
+            namel.append("%s（%s）" % (i["name"], i["no"]))
+        return namel
         # for i in plugin.keys():
         #     plugin[i].afterPick(namet)
 
